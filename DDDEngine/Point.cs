@@ -1,25 +1,33 @@
-﻿namespace DDDEngine
+﻿using System.Windows.Controls;
+using System.Windows.Media;
+
+namespace DDDEngine
 {
-    public class Point
+    public class Point: IDrawable
     {
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
 
-        public static implicit operator System.Windows.Point(Point p) // TODO: convert to 3D
+        public void Draw(Canvas canvas, Camera camera)
         {
-            var point2D = new System.Windows.Point();
-            point2D.X = p.X;
-            point2D.Y = p.Y;
-            return point2D;
+            var point = PointToWpfElement(this);
+            canvas.Children.Add(point);
         }
 
-        public static implicit operator System.Drawing.Point(Point p) // TODO: convert to 3D
+        private System.Windows.Shapes.Shape PointToWpfElement(Point p) // TODO: convert to 3D
         {
-            var point2D = new System.Drawing.Point();
-            point2D.X = p.X;
-            point2D.Y = p.Y;
-            return point2D;
+            var element = new System.Windows.Shapes.Ellipse
+            {
+                Width = 1,
+                Height = 1,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1
+            };
+            Canvas.SetLeft(element, X);
+            Canvas.SetTop(element, Y);
+            return element;
         }
+
     }
 }

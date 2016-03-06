@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using DDDEngine;
 using Line = DDDEngine.Line;
 using Point = DDDEngine.Point;
 
@@ -9,15 +10,25 @@ namespace DDDEngineWPFTest
         public MainWindow()
         {
             InitializeComponent();
-            DrawLine();
+            var camera = new Camera();
+            DrawPoint(camera);
+            DrawLine(camera);
         }
 
-        private void DrawLine()
+        private void DrawPoint(Camera camera)
         {
-            var p1 = new Point {X = 10, Y = 10, Z = 0};
-            var p2 = new Point {X = 30, Y = 30, Z = 0};
-            var line = new Line {Start = p1, End = p2};
-            canvas.Children.Add(line);
+            var point = new Point {X = 50, Y = 10, Z = 0};
+            point.Draw(canvas, camera);
+        }
+
+        private void DrawLine(Camera camera)
+        {
+            var line = new Line
+            {
+                Start = new Point {X = 100, Y = 20, Z = 0},
+                End = new Point {X = 100, Y = 200, Z = 0}
+            };
+            line.Draw(canvas, camera);
         }
     }
 }

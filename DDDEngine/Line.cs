@@ -1,26 +1,16 @@
-﻿using Brushes = System.Windows.Media.Brushes;
-using Shapes = System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace DDDEngine
 {
-    public class Line
+    public class Line: IDrawable
     {
         public Point Start { get; set; }
         public Point End { get; set; }
 
-        public static implicit operator Shapes.Line(Line l) // TODO: convert to 3D
+        public void Draw(Canvas canvas, Camera camera) // TODO: implement bresenham
         {
-            var line = new Shapes.Line
-            {
-                X1 = l.Start.X,
-                Y1 = l.Start.Y,
-                X2 = l.End.X,
-                Y2 = l.End.Y,
-                Stroke = Brushes.Black,
-                StrokeThickness = 1
-            };
-
-            return line;
+            Start.Draw(canvas, camera);
+            End.Draw(canvas, camera);
         }
     }
 }
