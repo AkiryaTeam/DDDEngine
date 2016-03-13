@@ -9,15 +9,15 @@ namespace DDDEngine
         public Point Start { get; set; }
         public Point End { get; set; }
 
-        public void Draw(Canvas canvas, Camera camera) // TODO: implement bresenham
+        public void Draw(Canvas canvas, Camera camera)
         {
-            List<Point> points = LineToWpfElement();
+            List<Point> points = ComputeLInePoints();
             foreach (var point in points)
             {
                 point.Draw(canvas, camera);
             }
         }
-        private List<Point> LineToWpfElement()
+        private List<Point> ComputeLInePoints()
         {
             List<Point> points = new List<Point>();
             int deltaX = Math.Abs(End.X - Start.X);
