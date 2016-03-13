@@ -5,9 +5,9 @@ namespace DDDEngine.Object
 {
     public class Triangle: IDrawable
     {
-        readonly Point[] _points = new Point[3];
+        readonly Point3D[] _points = new Point3D[3];
 
-        public Triangle(IReadOnlyList<Point> points)
+        public Triangle(IReadOnlyList<Point3D> points)
         {
             for (var i = 0; i < _points.Length; i++)
             {

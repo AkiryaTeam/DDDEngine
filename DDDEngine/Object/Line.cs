@@ -6,12 +6,12 @@ namespace DDDEngine.Object
 {
     public class Line: IDrawable
     {
-        public Point Start { get; set; }
-        public Point End { get; set; }
+        public Point3D Start { get; set; }
+        public Point3D End { get; set; }
 
         public Line() { }
 
-        public Line(Point start, Point end)
+        public Line(Point3D start, Point3D end)
         {
             Start = start;
             End = end;
@@ -26,9 +26,9 @@ namespace DDDEngine.Object
             }
         }
 
-        private IEnumerable<Point> ComputeLInePoints()
+        private IEnumerable<Point3D> ComputeLInePoints()
         {
-            var points = new List<Point>();
+            var points = new List<Point3D>();
             var deltaX = Math.Abs(End.X - Start.X);
             var deltaY = Math.Abs(End.Y - Start.Y);
             var signX = Start.X < End.X ? 1 : -1;
@@ -37,7 +37,7 @@ namespace DDDEngine.Object
 
             while (Start.X != End.X || Start.Y != End.Y)
             {
-                points.Add(new Point { X = Start.X, Y = Start.Y });
+                points.Add(new Point3D { X = Start.X, Y = Start.Y });
                 var error2 = error * 2;
                 if (error2 > -deltaY)
                 {
