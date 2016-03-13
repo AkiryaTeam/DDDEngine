@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using DDDEngine;
-using Line = DDDEngine.Line;
-using Point = DDDEngine.Point;
+using DDDEngine.Camera;
+using Line = DDDEngine.Object.Line;
+using Point = DDDEngine.Object.Point;
 
 namespace DDDEngineWPFTest
 {

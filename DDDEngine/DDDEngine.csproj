@@ -30,11 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MathNet.Numerics, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.11.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -46,13 +51,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
-    <Compile Include="DDDEngine.cs" />
-    <Compile Include="IDrawable.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="Camera\Camera.cs" />
+    <Compile Include="Object\IDrawable.cs" />
+    <Compile Include="Object\Line.cs" />
+    <Compile Include="Object\Point.cs" />
+    <Compile Include="Object\Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="World\World.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

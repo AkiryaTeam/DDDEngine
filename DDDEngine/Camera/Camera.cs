@@ -1,4 +1,4 @@
-﻿namespace DDDEngine
+﻿namespace DDDEngine.Camera
 {
     public class Camera
     {
