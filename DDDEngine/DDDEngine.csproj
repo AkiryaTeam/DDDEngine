@@ -52,11 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera\Camera.cs" />
-    <Compile Include="Object\IDrawable.cs" />
-    <Compile Include="Object\Line.cs" />
-    <Compile Include="Object\Point2D.cs" />
-    <Compile Include="Object\Point3D.cs" />
-    <Compile Include="Object\Triangle.cs" />
+    <Compile Include="Camera\OrthographicCamera.cs" />
+    <Compile Include="Camera\PerspectiveCamera.cs" />
+    <Compile Include="Model\LineDrawingStrategy\BresenhamLineDrawingStrategy.cs" />
+    <Compile Include="Model\LineDrawingStrategy\DefaultLineDrawingStrategy.cs" />
+    <Compile Include="Model\IDrawable.cs" />
+    <Compile Include="Model\LineDrawingStrategy\ILineDrawingStrategy.cs" />
+    <Compile Include="Model\Line.cs" />
+    <Compile Include="Model\LineFactory.cs" />
+    <Compile Include="Model\Point2D.cs" />
+    <Compile Include="Model\Point3D.cs" />
+    <Compile Include="Model\Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="World\World.cs" />
   </ItemGroup>
