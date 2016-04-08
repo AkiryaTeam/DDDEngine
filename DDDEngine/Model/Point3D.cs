@@ -1,4 +1,5 @@
-﻿using MathNet.Numerics.LinearAlgebra.Double;
+﻿using DDDEngine.Cameras;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DDDEngine.Model
 {
@@ -17,19 +18,19 @@ namespace DDDEngine.Model
             Z = z;
         }
 
-        public void Draw(Point3D worldPoint, Cameras.Camera camera)
+        public void Draw(Point3D worldPoint, Camera camera)
         {
             var point2D = ConvertTo2D(worldPoint, camera);
             point2D.Draw();
         }
 
-        public Point2D ConvertTo2D(Point3D worldPoint, Cameras.Camera camera)
+        public Point2D ConvertTo2D(Point3D worldPoint, Camera camera)
         {
             var point2D = new Point2D();
             var worldMatrix = GetWorldMatrix(worldPoint);
             var cameraMatrix = camera.GetCameraMatrix();
             var projectionMatrix = camera.GetProjectionMatrix();
-            var transformMatrix = cameraMatrix*worldMatrix;
+            var transformMatrix = projectionMatrix*cameraMatrix*worldMatrix;
             var pointMatrix = DenseMatrix.OfArray(new[,]
             {
                 {X},
@@ -37,10 +38,18 @@ namespace DDDEngine.Model
                 {Z},
                 {1}
             });
+
             var resultPointMatrix = transformMatrix*pointMatrix;
             var values = resultPointMatrix.Values;
-            point2D.X = values[0] + Configuration.Config.Canvas.ActualWidth/2;
-            point2D.Y = values[1] + Configuration.Config.Canvas.ActualHeight/2;
+            if (camera is PerspectiveCamera)
+            {
+                resultPointMatrix = 1/values[3]*resultPointMatrix;
+                values = resultPointMatrix.Values;
+            }
+
+            var viewport = new Viewport();
+            point2D.X = (values[0] + 1)*viewport.Width/2 + viewport.X;
+            point2D.Y = (values[1] + 1)*viewport.Height/2 + viewport.Y;
             return point2D;
         }
 

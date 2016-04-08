@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace DDDEngineWPFTest
+﻿namespace DDDEngineWPFTest
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

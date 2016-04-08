@@ -11,10 +11,10 @@ namespace DDDEngine.Cameras
         public double AngleX { get; set; }
         public double AngleY { get; set; }
         public double AngleZ { get; set; }
-        public double NearZ { get; }
-        public double FarZ { get; }
+        public double NearZ { get; set; }
+        public double FarZ { get; set; }
 
-        protected Camera() : this(0, 0, 0, 0, 0, 0, 300, -300) { }
+        protected Camera() { }
 
         protected Camera (double x, double y, double z, double angleX, double angleY, double angleZ, 
             double nearZ, double farZ)
@@ -43,21 +43,21 @@ namespace DDDEngine.Cameras
             var cameraRotationXMatrix = DenseMatrix.OfArray(new[,]
             {
                 {1, 0, 0, 0},
-                {0, Math.Cos(GradToRad(-AngleX)), -Math.Sin(GradToRad(-AngleX)), 0},
-                {0, Math.Sin(GradToRad(-AngleX)), Math.Cos(GradToRad(-AngleX)), 0},
+                {0, Math.Cos(DegreesToRadians(-AngleX)), -Math.Sin(DegreesToRadians(-AngleX)), 0},
+                {0, Math.Sin(DegreesToRadians(-AngleX)), Math.Cos(DegreesToRadians(-AngleX)), 0},
                 {0, 0, 0, 1}
             });
             var cameraRotationYMatrix = DenseMatrix.OfArray(new[,]
             {
-                {Math.Cos(GradToRad(-AngleY)), 0, Math.Sin(GradToRad(-AngleY)), 0},
+                {Math.Cos(DegreesToRadians(-AngleY)), 0, Math.Sin(DegreesToRadians(-AngleY)), 0},
                 {0, 1, 0, 0},
-                {-Math.Sin(GradToRad(-AngleY)), 0, Math.Cos(GradToRad(-AngleY)), 0},
+                {-Math.Sin(DegreesToRadians(-AngleY)), 0, Math.Cos(DegreesToRadians(-AngleY)), 0},
                 {0, 0, 0, 1}
             });
             var cameraRotationZMatrix = DenseMatrix.OfArray(new[,]
             {
-                {Math.Cos(GradToRad(-AngleZ)), -Math.Sin(GradToRad(-AngleZ)), 0, 0},
-                {Math.Sin(GradToRad(-AngleZ)), Math.Cos(GradToRad(-AngleZ)), 0, 0},
+                {Math.Cos(DegreesToRadians(-AngleZ)), -Math.Sin(DegreesToRadians(-AngleZ)), 0, 0},
+                {Math.Sin(DegreesToRadians(-AngleZ)), Math.Cos(DegreesToRadians(-AngleZ)), 0, 0},
                 {0, 0, 1, 0},
                 {0, 0, 0, 1}
             });
@@ -65,7 +65,7 @@ namespace DDDEngine.Cameras
             return cameraMatrix;
         }
 
-        protected static double GradToRad(double grad)
+        protected static double DegreesToRadians(double grad)
         {
             return grad*Math.PI/180;
         }

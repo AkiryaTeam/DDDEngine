@@ -8,7 +8,7 @@ namespace DDDEngine.World
     public class World3D
     {
         private readonly Dictionary<IDrawable, Point3D> _objects;
-        public Camera Camera { get; }
+        public Camera Camera { get; set; }
 
         public World3D(Camera camera)
         {

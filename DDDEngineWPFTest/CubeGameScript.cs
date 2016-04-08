@@ -16,7 +16,7 @@ namespace DDDEngineWPFTest
             var camera = new OrthographicCamera();
             World = new World3D(camera);
 
-            var cube = new Cube(100);
+            var cube = new Cube(200);
             World.AddObject(cube, new Point3D(0,0,0));
         }
 
@@ -25,12 +25,15 @@ namespace DDDEngineWPFTest
             for (var i = 0; i < 360; ++i)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                World.Camera.AngleY = i%360;
-                World.Camera.AngleX = i%360;
-                World.Camera.AngleZ = i%360;
+                World.Camera.AngleY = i % 360;
+                World.Camera.AngleX = i % 360;
+                //World.Camera.AngleZ = i % 360;
                 Redraw();
                 Thread.Sleep(10);
             }
+            World.Camera = World.Camera is OrthographicCamera
+                ? (Camera) new PerspectiveCamera()
+                : new OrthographicCamera();
         }
     }
 }

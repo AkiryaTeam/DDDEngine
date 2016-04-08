@@ -5,12 +5,12 @@ namespace DDDEngine.Cameras
 {
     public class OrthographicCamera : Camera
     {
-        public double Width { get; }
-        public double Height { get; }
+        public double Width { get; set; }
+        public double Height { get; set; }
 
         public OrthographicCamera() : this(Config.Canvas.ActualWidth, Config.Canvas.ActualHeight) { }
 
-        public OrthographicCamera(double width, double height)
+        public OrthographicCamera(double width, double height): base(0, 0, 0, 0, 0, 0, 300, -300)
         {
             Width = width;
             Height = height;
