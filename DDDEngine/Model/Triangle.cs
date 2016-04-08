@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 
-namespace DDDEngine.Object
+namespace DDDEngine.Model
 {
     public class Triangle: IDrawable
     {
@@ -15,7 +15,7 @@ namespace DDDEngine.Object
             }
         }
 
-        public void Draw(Canvas canvas, Camera.Camera camera)
+        public void Draw(Canvas canvas, Point3D worldPoint, Camera.Camera camera)
         {
             var lines = new Line[3];
             lines[0] = new Line(_points[0], _points[1]);
@@ -23,7 +23,7 @@ namespace DDDEngine.Object
             lines[2] = new Line(_points[2], _points[0]);
             foreach (var line in lines)
             {
-                line.Draw(canvas, camera);
+                line.Draw(canvas, worldPoint, camera);
             }
         }
     }

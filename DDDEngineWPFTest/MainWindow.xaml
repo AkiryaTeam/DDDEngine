@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DDDEngineWPFTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="395.548" Width="525">
     <Grid>
         <Canvas Name="canvas" Background="White" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/>
+        <Button x:Name="button" Content="Тыкни" HorizontalAlignment="Left" Margin="208,335,0,0" VerticalAlignment="Top" Width="99" Click="button_Click"/>
 
     </Grid>
 </Window>

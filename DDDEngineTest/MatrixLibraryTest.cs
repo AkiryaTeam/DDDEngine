@@ -1,6 +1,4 @@
-﻿using System;
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double;
+﻿using MathNet.Numerics.LinearAlgebra.Double;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DDDEngineTest
@@ -24,7 +22,7 @@ namespace DDDEngineTest
             });
             var result = m1.Multiply(m2);
             var actialRowArrays = result.ToRowArrays();
-            var expectedRowArrays = new double[][]
+            var expectedRowArrays = new[]
             {
                 new []{2.0, 4.0, 6.0}
             };
