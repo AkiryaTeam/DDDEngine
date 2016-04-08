@@ -1,7 +1,7 @@
+using System;
 using MathNet.Numerics.LinearAlgebra.Double;
-using static System.Math;
 
-namespace DDDEngine.Camera
+namespace DDDEngine.Cameras
 {
     public class PerspectiveCamera : Camera
     {
@@ -20,8 +20,8 @@ namespace DDDEngine.Camera
         {
             var projectionMatrix = DenseMatrix.OfArray(new[,]
             {
-                {1/Tan(GradToRad(FovX)/2), 0, 0, 0},
-                {0, 1/Tan(GradToRad(FovY)/2), 0, 0},
+                {1/Math.Tan(GradToRad(FovX)/2), 0, 0, 0},
+                {0, 1/Math.Tan(GradToRad(FovY)/2), 0, 0},
                 {0, 0, -((FarZ + NearZ)/(FarZ-NearZ)), -(2*(NearZ*FarZ)/(FarZ-NearZ))},
                 {0, 0, -1, 0}
             });

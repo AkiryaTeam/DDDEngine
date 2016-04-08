@@ -1,9 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace DDDEngine.Model
+﻿namespace DDDEngine.Model
 {
     public interface IDrawable
     {
-        void Draw(Canvas canvas, Point3D worldPoint, Camera.Camera camera);
+        void Draw(Point3D worldPoint, Cameras.Camera camera);
     }
 }

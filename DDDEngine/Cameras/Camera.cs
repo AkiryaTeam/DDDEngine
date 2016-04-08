@@ -1,7 +1,7 @@
-﻿using MathNet.Numerics.LinearAlgebra.Double;
-using static System.Math;
+﻿using System;
+using MathNet.Numerics.LinearAlgebra.Double;
 
-namespace DDDEngine.Camera
+namespace DDDEngine.Cameras
 {
     public abstract class Camera
     {
@@ -43,21 +43,21 @@ namespace DDDEngine.Camera
             var cameraRotationXMatrix = DenseMatrix.OfArray(new[,]
             {
                 {1, 0, 0, 0},
-                {0, Cos(GradToRad(-AngleX)), -Sin(GradToRad(-AngleX)), 0},
-                {0, Sin(GradToRad(-AngleX)), Cos(GradToRad(-AngleX)), 0},
+                {0, Math.Cos(GradToRad(-AngleX)), -Math.Sin(GradToRad(-AngleX)), 0},
+                {0, Math.Sin(GradToRad(-AngleX)), Math.Cos(GradToRad(-AngleX)), 0},
                 {0, 0, 0, 1}
             });
             var cameraRotationYMatrix = DenseMatrix.OfArray(new[,]
             {
-                {Cos(GradToRad(-AngleY)), 0, Sin(GradToRad(-AngleY)), 0},
+                {Math.Cos(GradToRad(-AngleY)), 0, Math.Sin(GradToRad(-AngleY)), 0},
                 {0, 1, 0, 0},
-                {-Sin(GradToRad(-AngleY)), 0, Cos(GradToRad(-AngleY)), 0},
+                {-Math.Sin(GradToRad(-AngleY)), 0, Math.Cos(GradToRad(-AngleY)), 0},
                 {0, 0, 0, 1}
             });
             var cameraRotationZMatrix = DenseMatrix.OfArray(new[,]
             {
-                {Cos(GradToRad(-AngleZ)), -Sin(GradToRad(-AngleZ)), 0, 0},
-                {Sin(GradToRad(-AngleZ)), Cos(GradToRad(-AngleZ)), 0, 0},
+                {Math.Cos(GradToRad(-AngleZ)), -Math.Sin(GradToRad(-AngleZ)), 0, 0},
+                {Math.Sin(GradToRad(-AngleZ)), Math.Cos(GradToRad(-AngleZ)), 0, 0},
                 {0, 0, 1, 0},
                 {0, 0, 0, 1}
             });
@@ -67,7 +67,7 @@ namespace DDDEngine.Camera
 
         protected static double GradToRad(double grad)
         {
-            return grad*PI/180;
+            return grad*Math.PI/180;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using MathNet.Numerics.LinearAlgebra.Double;
+﻿using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DDDEngine.Model
 {
@@ -18,13 +17,13 @@ namespace DDDEngine.Model
             Z = z;
         }
 
-        public void Draw(Canvas canvas, Point3D worldPoint, Camera.Camera camera)
+        public void Draw(Point3D worldPoint, Cameras.Camera camera)
         {
-            var point2D = ConvertTo2D(worldPoint, camera, canvas);
-            point2D.Draw(canvas);
+            var point2D = ConvertTo2D(worldPoint, camera);
+            point2D.Draw();
         }
 
-        public Point2D ConvertTo2D(Point3D worldPoint, Camera.Camera camera, Canvas canvas)
+        public Point2D ConvertTo2D(Point3D worldPoint, Cameras.Camera camera)
         {
             var point2D = new Point2D();
             var worldMatrix = GetWorldMatrix(worldPoint);
@@ -40,8 +39,8 @@ namespace DDDEngine.Model
             });
             var resultPointMatrix = transformMatrix*pointMatrix;
             var values = resultPointMatrix.Values;
-            point2D.X = values[0] + canvas.Width/2;
-            point2D.Y = values[1] + canvas.Height/2;
+            point2D.X = values[0] + Configuration.Config.Canvas.ActualWidth/2;
+            point2D.Y = values[1] + Configuration.Config.Canvas.ActualHeight/2;
             return point2D;
         }
 

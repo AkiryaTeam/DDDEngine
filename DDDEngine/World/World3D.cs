@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Controls;
+using DDDEngine.Cameras;
+using DDDEngine.Configuration;
 using DDDEngine.Model;
 
 namespace DDDEngine.World
 {
-    public class World
+    public class World3D
     {
         private readonly Dictionary<IDrawable, Point3D> _objects;
-        private readonly Camera.Camera _camera;
+        public Camera Camera { get; }
 
-        public World(Camera.Camera camera)
+        public World3D(Camera camera)
         {
             _objects = new Dictionary<IDrawable, Point3D>();
-            _camera = camera;
+            Camera = camera;
         }
 
         public void AddObject(IDrawable obj, Point3D point)
@@ -20,12 +21,12 @@ namespace DDDEngine.World
             _objects.Add(obj, point);
         }
 
-        public void Draw(Canvas canvas)
+        public void Draw()
         {
-            canvas.Children.Clear();
+            Config.Canvas.Children.Clear();
             foreach (var obj in _objects)
             {
-                obj.Key.Draw(canvas, obj.Value, _camera);
+                obj.Key.Draw(obj.Value, Camera);
             }
         }
 

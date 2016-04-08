@@ -1,13 +1,14 @@
-﻿using MathNet.Numerics.LinearAlgebra.Double;
+﻿using DDDEngine.Configuration;
+using MathNet.Numerics.LinearAlgebra.Double;
 
-namespace DDDEngine.Camera
+namespace DDDEngine.Cameras
 {
     public class OrthographicCamera : Camera
     {
         public double Width { get; }
         public double Height { get; }
 
-        public OrthographicCamera() : this(400, 300) { }
+        public OrthographicCamera() : this(Config.Canvas.ActualWidth, Config.Canvas.ActualHeight) { }
 
         public OrthographicCamera(double width, double height)
         {

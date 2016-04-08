@@ -3,12 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DDDEngineWPFTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="395.548" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
-        <Canvas Name="canvas" Background="White" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/>
-        <Button x:Name="button" Content="Тыкни" HorizontalAlignment="Left" Margin="208,335,0,0" VerticalAlignment="Top" Width="99" Click="button_Click"/>
-
+        <Canvas Name="Canvas" Background="White"/>
+        <Button x:Name="Button" Content="Тыкни" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0 0 0 10" Click="StartGame"/>
     </Grid>
 </Window>

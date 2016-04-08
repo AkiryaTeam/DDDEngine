@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
+using DDDEngine.Model;
 
-namespace DDDEngine.Model.LineDrawingStrategy
+namespace DDDEngine.Configuration.LineDrawingStrategy
 {
     public class BresenhamLineDrawingStrategy : ILineDrawingStrategy
     {
-        public void Draw(Canvas canvas, Point2D start, Point2D end)
+        public void Draw(Point2D start, Point2D end)
         {
             var points = ComputeLinePoints(start, end);
             foreach (var point in points)
             {
-                point.Draw(canvas);
+                point.Draw();
             }
         }
 

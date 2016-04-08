@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media;
+using DDDEngine.Configuration;
 
 namespace DDDEngine.Model
 {
@@ -8,10 +9,10 @@ namespace DDDEngine.Model
         public double X { get; set; }
         public double Y { get; set; }
 
-        public void Draw(Canvas canvas)
+        public void Draw()
         {
             var point = PointToWpfElement();
-            canvas.Children.Add(point);
+            Config.Canvas.Children.Add(point);
         }
 
         private System.Windows.Shapes.Shape PointToWpfElement()
