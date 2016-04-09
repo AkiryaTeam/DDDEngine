@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDEngine", "DDDEngine\DDDE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDEngineTest", "DDDEngineTest\DDDEngineTest.csproj", "{A6AB94EF-0C7D-4F0A-A582-E24186318F5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDEngineWPFTest", "DDDEngineWPFTest\DDDEngineWPFTest.csproj", "{005FE47B-F869-46EB-AB01-29B0CC330223}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDEngineDemo", "DDDEngineDemo\DDDEngineDemo.csproj", "{005FE47B-F869-46EB-AB01-29B0CC330223}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

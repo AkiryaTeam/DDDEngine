@@ -14,7 +14,6 @@ namespace DDDEngine.Game
             Context = context;
         }
 
-        public virtual void Init() {}
         public abstract void Action(CancellationToken cancellationToken);
 
         public void Redraw()

@@ -7,13 +7,13 @@ using DDDEngine.Game;
 using DDDEngine.Model;
 using DDDEngine.World;
 
-namespace DDDEngineWPFTest
+namespace DDDEngineDemo
 {
-    public class CubeGameScript: GameScript
-    {
-        public CubeGameScript(Window context) : base(context) { }
+    public enum CameraType { Orthographic, Perspective }
 
-        public override void Init()
+    public class CubeDemoScript: GameScript
+    {
+        public CubeDemoScript(Window context) : base(context)
         {
             var camera = new OrthographicCamera();
             World = new World3D(camera);
@@ -24,25 +24,22 @@ namespace DDDEngineWPFTest
 
         public override void Action(CancellationToken cancellationToken)
         {
-            ChangeText();
-            for (var i = 0; i < 360; ++i)
+            for (var i = 0; i <= 360; ++i)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 World.Camera.AngleY = i % 360;
                 World.Camera.AngleX = i % 360;
-                //World.Camera.AngleZ = i % 360;
+                World.Camera.AngleZ = i % 360;
                 Redraw();
                 Thread.Sleep(10);
             }
-            World.Camera = World.Camera is OrthographicCamera
-                ? (Camera) new PerspectiveCamera()
-                : new OrthographicCamera();
         }
 
-        private void ChangeText()
+        public void SetCamera(CameraType type)
         {
+            World.Camera = type == CameraType.Orthographic ? (Camera) new OrthographicCamera() : new PerspectiveCamera();
             var label = (Label) Config.Get("Label");
-            Context.Dispatcher.Invoke(() => label.Content = World.Camera is OrthographicCamera ? "Orthographic" : "Perspective");
+            Context.Dispatcher.Invoke(() => label.Content = type);
         }
     }
 }

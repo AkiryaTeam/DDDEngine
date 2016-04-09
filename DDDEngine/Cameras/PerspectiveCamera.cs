@@ -5,8 +5,8 @@ namespace DDDEngine.Cameras
 {
     public class PerspectiveCamera : Camera
     {
-        public double FovX { get; }
-        public double FovY { get; }
+        public double FovX { get; set; }
+        public double FovY { get; set; }
 
         public PerspectiveCamera() : this(60, 60) { }
 

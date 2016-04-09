@@ -53,13 +53,13 @@ namespace DDDEngine.Model
             return point2D;
         }
 
-        private DenseMatrix GetWorldMatrix(Point3D point)
+        private DenseMatrix GetWorldMatrix(Point3D worldPoint)
         {
             return DenseMatrix.OfArray(new[,]
             {
-                {1, 0, 0, point.X + X},
-                {0, 1, 0, point.Y + Y},
-                {0, 0, 1, point.Z + Z},
+                {1, 0, 0, worldPoint.X + X},
+                {0, 1, 0, worldPoint.Y + Y},
+                {0, 0, 1, worldPoint.Z + Z},
                 {0, 0, 0, 1}
             });
         }

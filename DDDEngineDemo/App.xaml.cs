@@ -1,4 +1,4 @@
-﻿namespace DDDEngineWPFTest
+﻿namespace DDDEngineDemo
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml
