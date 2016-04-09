@@ -1,4 +1,5 @@
-﻿using DDDEngine.Configuration;
+﻿using System;
+using DDDEngine.Configuration;
 using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DDDEngine.Cameras
@@ -18,6 +19,11 @@ namespace DDDEngine.Cameras
 
         public override DenseMatrix GetProjectionMatrix()
         {
+            if(Math.Abs(Width) < 0.001 || Math.Abs(Height) < 0.001) // TODO: remove this hack
+            {
+                Width = Config.Canvas.ActualWidth;
+                Height = Config.Canvas.ActualHeight;
+            }
             var projectionMatrix = DenseMatrix.OfArray(new[,]
             {
                 {1/Width, 0, 0, 0},

@@ -65,6 +65,7 @@
     <Compile Include="Configuration\LineDrawingStrategy\ILineDrawingStrategy.cs" />
     <Compile Include="Model\Line.cs" />
     <Compile Include="Utils\Exceptions\CanvasNotInitializedException.cs" />
+    <Compile Include="Utils\Exceptions\NoSuchElementException.cs" />
     <Compile Include="Utils\LineFactory.cs" />
     <Compile Include="Model\Point2D.cs" />
     <Compile Include="Model\Point3D.cs" />

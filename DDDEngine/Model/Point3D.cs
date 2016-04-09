@@ -59,7 +59,7 @@ namespace DDDEngine.Model
             {
                 {1, 0, 0, worldPoint.X + X},
                 {0, 1, 0, worldPoint.Y + Y},
-                {0, 0, 1, worldPoint.Z + Z},
+                {0, 0, 1, -worldPoint.Z + Z},
                 {0, 0, 0, 1}
             });
         }
