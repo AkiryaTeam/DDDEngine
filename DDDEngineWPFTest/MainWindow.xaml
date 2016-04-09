@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <Grid>
-        <Canvas Name="Canvas" Background="White"/>
+        <Canvas Name="Canvas" Background="White"> </Canvas>
+        <Label x:Name="Label" HorizontalContentAlignment="Center" Content="" VerticalAlignment="Top" HorizontalAlignment="Center" Width="262" Margin="0 10 0 0" FontSize="26.667"/>
         <Button x:Name="Button" Content="Тыкни" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0 0 0 10" Click="StartGame"/>
     </Grid>
 </Window>

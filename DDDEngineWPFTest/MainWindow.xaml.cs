@@ -15,6 +15,7 @@ namespace DDDEngineWPFTest
         {
             InitializeComponent();
             Config.Initialize(Canvas);
+            Config.Add("Label", Label);
 
             var script = new CubeGameScript(this);
             _game = new GameLoop(script);
