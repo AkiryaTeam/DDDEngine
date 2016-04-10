@@ -1,6 +1,4 @@
-﻿using DDDEngine.Configuration;
-
-namespace DDDEngine.Cameras
+﻿namespace DDDEngine.View
 {
     public class Viewport
     {
@@ -10,13 +8,10 @@ namespace DDDEngine.Cameras
         public double Width { get; set; }
         public double Height { get; set; }
 
-        public Viewport()
+        public Viewport(double width, double height)
         {
-            Width = Config.Canvas.ActualWidth;
-            Height = Config.Canvas.ActualHeight;
-            X = 0;
-            Y = 0;
-            Z = 0;
+            Width = width;
+            Height = height;
         }
     }
 }

@@ -15,10 +15,9 @@ namespace DDDEngineDemo
         {
             InitializeComponent();
             Config.Clear();
-            Config.Canvas = Canvas;
             Config.Add("Label", Label);
 
-            _script = new CubeDemoScript(this);
+            _script = new CubeDemoScript(this, Canvas);
             _game = new GameLoop(_script);
         }
 

@@ -1,9 +1,10 @@
-﻿using DDDEngine.Cameras;
+﻿using DDDEngine.Physics;
+using DDDEngine.View;
 using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DDDEngine.Model
 {
-    public class Point3D: IDrawable
+    public class Point3D: IObject
     {
         public double X { get; set; }
         public double Y { get; set; }
@@ -18,17 +19,18 @@ namespace DDDEngine.Model
             Z = z;
         }
 
-        public void Draw(Point3D worldPoint, Camera camera)
+        public void Draw(Position position, RigidBody cameraBody)
         {
-            var point2D = ConvertTo2D(worldPoint, camera);
-            point2D.Draw();
+            var camera = (Camera) cameraBody.Object;
+            var point2D = ConvertTo2D(position, camera, cameraBody.Position);
+            point2D.Draw(camera.Canvas);
         }
 
-        public Point2D ConvertTo2D(Point3D worldPoint, Camera camera)
+        public Point2D ConvertTo2D(Position pointPosition,  Camera camera, Position cameraPosition)
         {
             var point2D = new Point2D();
-            var worldMatrix = GetWorldMatrix(worldPoint);
-            var cameraMatrix = camera.GetCameraMatrix();
+            var worldMatrix = GetWorldMatrix(pointPosition);
+            var cameraMatrix = camera.GetCameraMatrix(cameraPosition);
             var projectionMatrix = camera.GetProjectionMatrix();
             var transformMatrix = projectionMatrix*cameraMatrix*worldMatrix;
             var pointMatrix = DenseMatrix.OfArray(new[,]
@@ -47,19 +49,19 @@ namespace DDDEngine.Model
                 values = resultPointMatrix.Values;
             }
 
-            var viewport = new Viewport();
+            var viewport = camera.GetViewport();
             point2D.X = (values[0] + 1)*viewport.Width/2 + viewport.X;
             point2D.Y = (values[1] + 1)*viewport.Height/2 + viewport.Y;
             return point2D;
         }
 
-        private DenseMatrix GetWorldMatrix(Point3D worldPoint)
+        private DenseMatrix GetWorldMatrix(Position position)
         {
             return DenseMatrix.OfArray(new[,]
             {
-                {1, 0, 0, worldPoint.X + X},
-                {0, 1, 0, worldPoint.Y + Y},
-                {0, 0, 1, -worldPoint.Z + Z},
+                {1, 0, 0, position.Point.X + X},
+                {0, 1, 0, position.Point.Y + Y},
+                {0, 0, 1, -position.Point.Z + Z},
                 {0, 0, 0, 1}
             });
         }

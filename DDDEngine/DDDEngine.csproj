@@ -51,20 +51,22 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cameras\Camera.cs" />
-    <Compile Include="Cameras\OrthographicCamera.cs" />
-    <Compile Include="Cameras\PerspectiveCamera.cs" />
-    <Compile Include="Cameras\Viewport.cs" />
+    <Compile Include="Physics\PhysicsProcessor.cs" />
+    <Compile Include="Physics\Position.cs" />
+    <Compile Include="Physics\RigidBody.cs" />
+    <Compile Include="View\Camera.cs" />
+    <Compile Include="View\OrthographicCamera.cs" />
+    <Compile Include="View\PerspectiveCamera.cs" />
+    <Compile Include="View\Viewport.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Game\GameLoop.cs" />
     <Compile Include="Game\GameScript.cs" />
     <Compile Include="Model\Cube.cs" />
     <Compile Include="Configuration\LineDrawingStrategy\BresenhamLineDrawingStrategy.cs" />
     <Compile Include="Configuration\LineDrawingStrategy\DefaultLineDrawingStrategy.cs" />
-    <Compile Include="Model\IDrawable.cs" />
+    <Compile Include="Model\IObject.cs" />
     <Compile Include="Configuration\LineDrawingStrategy\ILineDrawingStrategy.cs" />
     <Compile Include="Model\Line.cs" />
-    <Compile Include="Utils\Exceptions\CanvasNotInitializedException.cs" />
     <Compile Include="Utils\Exceptions\NoSuchElementException.cs" />
     <Compile Include="Utils\LineFactory.cs" />
     <Compile Include="Model\Point2D.cs" />

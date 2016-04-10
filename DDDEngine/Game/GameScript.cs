@@ -16,6 +16,11 @@ namespace DDDEngine.Game
 
         public abstract void Action(CancellationToken cancellationToken);
 
+        public void Redraw(double deltaTime)
+        {
+            Context.Dispatcher.Invoke(() => World.Draw(deltaTime));
+        }
+
         public void Redraw()
         {
             Context.Dispatcher.Invoke(World.Draw);

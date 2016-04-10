@@ -1,16 +1,17 @@
 using System;
+using System.Windows.Controls;
 using MathNet.Numerics.LinearAlgebra.Double;
 
-namespace DDDEngine.Cameras
+namespace DDDEngine.View
 {
     public class PerspectiveCamera : Camera
     {
         public double FovX { get; set; }
         public double FovY { get; set; }
 
-        public PerspectiveCamera() : this(60, 60) { }
+        public PerspectiveCamera(Canvas canvas) : this(canvas, 60, 60) { }
 
-        public PerspectiveCamera(double fovX, double fovY) : base(0, 0, 1300, 0, 0, 0, 300, -300)
+        public PerspectiveCamera(Canvas canvas, double fovX, double fovY) : base(canvas, 300, -300)
         {
             FovX = fovX;
             FovY = fovY;
@@ -18,7 +19,7 @@ namespace DDDEngine.Cameras
 
         public override DenseMatrix GetProjectionMatrix()
         {
-            var viewport = new Viewport();
+            var viewport = GetViewport();
             var aspectRatio = viewport.Width/viewport.Height;
             var right = NearZ*Math.Tan(DegreesToRadians(FovX)/2);
             var top = right/aspectRatio;

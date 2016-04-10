@@ -55,11 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CubeDemoWindow.xaml">
+    <Page Include="CubeDemo\CubeDemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CubeTransformationDemoWindow.xaml">
+    <Page Include="CubeTransformationDemo\CubeTransformationDemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,20 +71,28 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CubeDemoScript.cs" />
-    <Compile Include="CubeDemoWindow.xaml.cs">
+    <Compile Include="CubeDemo\CubeDemoScript.cs" />
+    <Compile Include="CubeDemo\CubeDemoWindow.xaml.cs">
       <DependentUpon>CubeDemoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CubeTransformationDemoScript.cs" />
-    <Compile Include="CubeTransformationDemoWindow.xaml.cs">
+    <Compile Include="CubeTransformationDemo\CubeTransformationDemoScript.cs" />
+    <Compile Include="CubeTransformationDemo\CubeTransformationDemoWindow.xaml.cs">
       <DependentUpon>CubeTransformationDemoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PhysicsDemo\PhysicsDemoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PhysicsDemo\PhysicsDemoScript.cs" />
+    <Compile Include="PhysicsDemo\PhysicsDemoWindow.xaml.cs">
+      <DependentUpon>PhysicsDemoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -117,6 +125,7 @@
       <Name>DDDEngine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

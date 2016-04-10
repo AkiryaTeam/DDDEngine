@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using DDDEngine.Cameras;
-using DDDEngine.Configuration;
-using DDDEngine.Model;
+﻿using System;
+using System.Collections.Generic;
+using DDDEngine.View;
+using DDDEngine.Physics;
 using DDDEngine.Utils.Exceptions;
 
 namespace DDDEngine.World
@@ -10,60 +10,77 @@ namespace DDDEngine.World
 
     public class World3D
     {
-        private readonly Dictionary<IDrawable, Point3D> _objects;
-        public Camera Camera { get; set; }
+        private readonly List<RigidBody> _bodies;
+        private readonly List<RigidBody> _cameras; 
 
-        public World3D(Camera camera)
+        public World3D()
         {
-            _objects = new Dictionary<IDrawable, Point3D>();
-            Camera = camera;
+            _bodies = new List<RigidBody>();
+            _cameras = new List<RigidBody>();
         }
 
-        public void AddObject(IDrawable obj, Point3D point)
+        public void AddBody(RigidBody body)
         {
-            _objects.Add(obj, point);
+            _bodies.Add(body);
+        }
+
+        public void AddCamera(RigidBody camera)
+        {
+            if (!(camera.Object is Camera)) throw new InvalidOperationException();
+            _cameras.Add(camera);
+        }
+
+        public void Draw(double deltaTime)
+        {
+            foreach (var camera in _cameras)
+            {
+                var cameraObject = (Camera) camera.Object;
+                cameraObject.Canvas.Children.Clear();
+                foreach (var body in _bodies)
+                {
+                    body.Object.Draw(body.Position, camera);
+                    new PhysicsProcessor().RecomputePosition(body, deltaTime);
+                }
+            }
         }
 
         public void Draw()
         {
-            Config.Canvas.Children.Clear();
-            foreach (var obj in _objects)
+            foreach (var camera in _cameras)
             {
-                obj.Key.Draw(obj.Value, Camera);
+                var cameraObject = (Camera) camera.Object;
+                cameraObject.Canvas.Children.Clear();
+                foreach (var body in _bodies)
+                {
+                    body.Object.Draw(body.Position, camera);
+                }
             }
         }
 
-        public void Move(IDrawable obj, Direction direction, int i)
+        public void Move(RigidBody body, Direction direction, int i)
         {
-            if (!_objects.ContainsKey(obj)) throw new NoSuchElementException();
+            if (!_bodies.Contains(body)) throw new NoSuchElementException();
             switch (direction)
             {
                 case Direction.Left:
-                    _objects[obj].X += i;
+                    body.Position.Point.X += i;
                     break;
                 case Direction.Right:
-                    _objects[obj].X -= i;
+                    body.Position.Point.X -= i;
                     break;
                 case Direction.Up:
-                    _objects[obj].Y += i;
+                    body.Position.Point.Y += i;
                     break;
                 case Direction.Down:
-                    _objects[obj].Y -= i;
+                    body.Position.Point.Y -= i;
                     break;
                 case Direction.Back:
-                    _objects[obj].Z -= i;
+                    body.Position.Point.Z -= i;
                     break;
                 case Direction.Forward:
-                    _objects[obj].Z += i;
+                    body.Position.Point.Z += i;
                     break;
             }
-            Draw();
-        }
-
-        public Point3D GetWorldPoint(IDrawable obj)
-        {
-            if (!_objects.ContainsKey(obj)) throw new NoSuchElementException();
-            return _objects[obj];
         }
     }
 }

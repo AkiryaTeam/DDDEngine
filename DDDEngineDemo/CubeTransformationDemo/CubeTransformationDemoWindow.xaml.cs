@@ -16,10 +16,9 @@ namespace DDDEngineDemo
             InitializeComponent();
 
             Config.Clear();
-            Config.Canvas = Canvas;
             Config.Add("Label", Label);
 
-            _script = new CubeTransformationDemoScript(this);
+            _script = new CubeTransformationDemoScript(this, Canvas);
             _game = new GameLoop(_script);
             _game.Start();
         }

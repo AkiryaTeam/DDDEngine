@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using DDDEngine.Physics;
 using DDDEngine.Utils;
 
 namespace DDDEngine.Model
 {
-    public class Cube: IDrawable
+    public class Cube: IObject
     {
         private readonly List<Line> _lines = new List<Line>(12); 
         public double Width { get; set; }
@@ -51,9 +52,9 @@ namespace DDDEngine.Model
             return ps;
         }
 
-        public void Draw(Point3D worldPoint, Cameras.Camera camera)
+        public void Draw(Position position, RigidBody camera)
         {
-            _lines.ForEach(l => l.Draw(worldPoint, camera));
+            _lines.ForEach(l => l.Draw(position, camera));
         }
     }
 }

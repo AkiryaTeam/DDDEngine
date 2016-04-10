@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,11 +23,14 @@ namespace DDDEngine.Game
             {
                 try
                 {
+                    var stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    long lastTime = 0;
                     while (true)
                     {   
                         cancellationToken.ThrowIfCancellationRequested();
                         _script.Action(cancellationToken);
-                        _script.Redraw();
+                        _script.Redraw(stopwatch.ElapsedMilliseconds - lastTime);
                     }
                 }
                 catch (Exception) { /*ignore*/ }

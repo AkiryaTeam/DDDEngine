@@ -1,3 +1,4 @@
+using System.Windows.Controls;
 using System.Windows.Media;
 using DDDEngine.Model;
 
@@ -5,7 +6,7 @@ namespace DDDEngine.Configuration.LineDrawingStrategy
 {
     public class DefaultLineDrawingStrategy : ILineDrawingStrategy
     {
-        public void Draw(Point2D start, Point2D end)
+        public void Draw(Canvas canvas, Point2D start, Point2D end)
         {
             var line = new System.Windows.Shapes.Line
             {
@@ -14,7 +15,7 @@ namespace DDDEngine.Configuration.LineDrawingStrategy
                 StrokeThickness = 1,
                 Stroke = Brushes.Black
             };
-            Config.Canvas.Children.Add(line);
+            canvas.Children.Add(line);
         }
     }
 }

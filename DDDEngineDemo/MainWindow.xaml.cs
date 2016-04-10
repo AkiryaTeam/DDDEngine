@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using DDDEngineDemo.PhysicsDemo;
 
 namespace DDDEngineDemo
 {
@@ -21,6 +22,12 @@ namespace DDDEngineDemo
         {
             var cubeTransformationDemoWindow = new CubeTransformationDemoWindow();
             cubeTransformationDemoWindow.ShowDialog();
+        }
+
+        private void PhysicsDemo(object sender, MouseButtonEventArgs e)
+        {
+            var physicsDemoWindow = new PhysicsDemoWindow();
+            physicsDemoWindow.ShowDialog();
         }
     }
 }
