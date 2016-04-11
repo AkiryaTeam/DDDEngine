@@ -8,7 +8,9 @@
     <Grid>
         <Canvas Name="Canvas" Background="White"></Canvas>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10 10">
-            <Label Content="g: " />
+            <Label Content="Amount: " />
+            <TextBox Name="Amount" Width="40" TextAlignment="Center" VerticalAlignment="Center" Text="5"/>
+            <Label Content="g: " Margin="10 0 0 0"/>
             <TextBox Name="TextBox" Width="40" TextAlignment="Center" VerticalAlignment="Center" Text="9.8"/>
             <Button Padding="5 0" Content="Restart" Margin="10 0 0 0" Click="Restart"/>
         </StackPanel>

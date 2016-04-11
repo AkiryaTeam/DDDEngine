@@ -51,6 +51,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Box.cs" />
+    <Compile Include="Model\Plane.cs" />
     <Compile Include="Physics\PhysicsProcessor.cs" />
     <Compile Include="Physics\Position.cs" />
     <Compile Include="Physics\RigidBody.cs" />

@@ -21,6 +21,7 @@ namespace DDDEngine.Model
                 Width = 1,
                 Height = 1,
                 Stroke = Brushes.Black,
+                Fill = Brushes.Black,
                 StrokeThickness = 1
             };
             Canvas.SetLeft(element, X);

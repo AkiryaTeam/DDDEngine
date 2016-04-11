@@ -67,6 +67,10 @@ namespace DDDEngine.View
 
         public void Draw(Position position, RigidBody camera) { }
 
+        public Box GetBoundingBox(Position position) {
+            return new Box(); // TODO
+        }
+
         public Viewport GetViewport()
         {
             return new Viewport(Canvas.ActualWidth, Canvas.ActualHeight);

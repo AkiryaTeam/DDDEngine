@@ -17,5 +17,10 @@ namespace DDDEngine.Physics
             Position = pos;
             Behaviour = behaviour;
         }
+
+        public Box GetBoundingBox()
+        {
+            return Object.GetBoundingBox(Position);
+        }
     }
 }

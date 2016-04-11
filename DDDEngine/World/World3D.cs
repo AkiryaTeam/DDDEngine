@@ -12,6 +12,7 @@ namespace DDDEngine.World
     {
         private readonly List<RigidBody> _bodies;
         private readonly List<RigidBody> _cameras; 
+        private readonly PhysicsProcessor _physicsProcessor = new PhysicsProcessor();
 
         public World3D()
         {
@@ -24,24 +25,15 @@ namespace DDDEngine.World
             _bodies.Add(body);
         }
 
+        public void ClearBodies()
+        {
+            _bodies.Clear();
+        }
+
         public void AddCamera(RigidBody camera)
         {
             if (!(camera.Object is Camera)) throw new InvalidOperationException();
             _cameras.Add(camera);
-        }
-
-        public void Draw(double deltaTime)
-        {
-            foreach (var camera in _cameras)
-            {
-                var cameraObject = (Camera) camera.Object;
-                cameraObject.Canvas.Children.Clear();
-                foreach (var body in _bodies)
-                {
-                    body.Object.Draw(body.Position, camera);
-                    new PhysicsProcessor().RecomputePosition(body, deltaTime);
-                }
-            }
         }
 
         public void Draw()
@@ -53,6 +45,7 @@ namespace DDDEngine.World
                 foreach (var body in _bodies)
                 {
                     body.Object.Draw(body.Position, camera);
+                    _physicsProcessor.RecomputePosition(body, _bodies);
                 }
             }
         }
@@ -63,10 +56,10 @@ namespace DDDEngine.World
             switch (direction)
             {
                 case Direction.Left:
-                    body.Position.Point.X += i;
+                    body.Position.Point.X -= i;
                     break;
                 case Direction.Right:
-                    body.Position.Point.X -= i;
+                    body.Position.Point.X += i;
                     break;
                 case Direction.Up:
                     body.Position.Point.Y += i;

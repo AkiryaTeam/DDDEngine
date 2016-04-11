@@ -25,7 +25,7 @@ namespace DDDEngine.View
             var top = right/aspectRatio;
             var projectionMatrix = DenseMatrix.OfArray(new[,]
             {
-                {NearZ/right, 0, 0, 0},
+                {-NearZ/right, 0, 0, 0},
                 {0, NearZ/top, 0, 0},
                 {0, 0, -(FarZ + NearZ)/(FarZ-NearZ), -(2*NearZ*FarZ)/(FarZ-NearZ)},
                 {0, 0, -1, 0}

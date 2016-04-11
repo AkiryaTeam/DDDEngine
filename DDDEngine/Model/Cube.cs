@@ -6,7 +6,8 @@ namespace DDDEngine.Model
 {
     public class Cube: IObject
     {
-        private readonly List<Line> _lines = new List<Line>(12); 
+        protected readonly List<Line> Lines = new List<Line>(12);
+        private List<Point3D> _points;
         public double Width { get; set; }
 
         public Cube(): this(50) { }
@@ -17,27 +18,27 @@ namespace DDDEngine.Model
             CreateLines();
         }
 
-        private void CreateLines()
+        protected void CreateLines()
         {
-            var ps = CreatePoints();
+            _points = CreatePoints();
             var lineFactory = new LineFactory();
-            _lines.Add(lineFactory.Create(ps[0], ps[1]));
-            _lines.Add(lineFactory.Create(ps[1], ps[2]));
-            _lines.Add(lineFactory.Create(ps[2], ps[3]));
-            _lines.Add(lineFactory.Create(ps[3], ps[0]));
-            _lines.Add(lineFactory.Create(ps[4], ps[5]));
-            _lines.Add(lineFactory.Create(ps[5], ps[6]));
-            _lines.Add(lineFactory.Create(ps[6], ps[7]));
-            _lines.Add(lineFactory.Create(ps[7], ps[4]));
-            _lines.Add(lineFactory.Create(ps[0], ps[4]));
-            _lines.Add(lineFactory.Create(ps[1], ps[5]));
-            _lines.Add(lineFactory.Create(ps[2], ps[6]));
-            _lines.Add(lineFactory.Create(ps[3], ps[7]));
+            Lines.Add(lineFactory.Create(_points[0], _points[1]));
+            Lines.Add(lineFactory.Create(_points[1], _points[2]));
+            Lines.Add(lineFactory.Create(_points[2], _points[3]));
+            Lines.Add(lineFactory.Create(_points[3], _points[0]));
+            Lines.Add(lineFactory.Create(_points[4], _points[5]));
+            Lines.Add(lineFactory.Create(_points[5], _points[6]));
+            Lines.Add(lineFactory.Create(_points[6], _points[7]));
+            Lines.Add(lineFactory.Create(_points[7], _points[4]));
+            Lines.Add(lineFactory.Create(_points[0], _points[4]));
+            Lines.Add(lineFactory.Create(_points[1], _points[5]));
+            Lines.Add(lineFactory.Create(_points[2], _points[6]));
+            Lines.Add(lineFactory.Create(_points[3], _points[7]));
         }
 
-        private List<Point3D> CreatePoints()
+        protected List<Point3D> CreatePoints()
         {
-            var half = Width/2;
+            var half = Width/2; // TODO: remove hack
             var ps = new List<Point3D>
             {
                 new Point3D(-half, -half, -half),
@@ -54,7 +55,14 @@ namespace DDDEngine.Model
 
         public void Draw(Position position, RigidBody camera)
         {
-            _lines.ForEach(l => l.Draw(position, camera));
+            Lines.ForEach(l => l.Draw(position, camera));
+        }
+
+        public Box GetBoundingBox(Position position)
+        {
+            var center = new Point3D(position.Point);
+            var halfWidth = new Point3D(_points[6]);
+            return new Box(center, halfWidth);
         }
     }
 }

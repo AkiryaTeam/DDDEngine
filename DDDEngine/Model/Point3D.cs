@@ -19,6 +19,13 @@ namespace DDDEngine.Model
             Z = z;
         }
 
+        public Point3D(Point3D p)
+        {
+            X = p.X;
+            Y = p.Y;
+            Z = p.Z;
+        }
+
         public void Draw(Position position, RigidBody cameraBody)
         {
             var camera = (Camera) cameraBody.Object;
@@ -59,11 +66,28 @@ namespace DDDEngine.Model
         {
             return DenseMatrix.OfArray(new[,]
             {
-                {1, 0, 0, position.Point.X + X},
-                {0, 1, 0, position.Point.Y + Y},
-                {0, 0, 1, -position.Point.Z + Z},
+                {1, 0, 0, position.Point.X},
+                {0, 1, 0, position.Point.Y},
+                {0, 0, 1, -position.Point.Z},
                 {0, 0, 0, 1}
             });
+        }
+
+        public Box GetBoundingBox(Position position)
+        {
+            var center = Add(position.Point);
+            var halfWidth = new Point3D(0.5, 0.5, 0.5);
+            return new Box(center, halfWidth);
+        }
+
+        public Point3D Add(Point3D p)
+        {
+            return new Point3D
+            {
+                X = p.X + X,
+                Y = p.Y + Y,
+                Z = p.Z + Z
+            };
         }
 
     }

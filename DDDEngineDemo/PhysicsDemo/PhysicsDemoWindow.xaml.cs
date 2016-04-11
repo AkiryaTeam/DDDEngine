@@ -15,6 +15,7 @@ namespace DDDEngineDemo.PhysicsDemo
             InitializeComponent();
 
             Config.Clear();
+            Config.Add("Amount", Amount);
 
             _script = new PhysicsDemoScript(this, Canvas);
             _game = new GameLoop(_script);
@@ -29,7 +30,7 @@ namespace DDDEngineDemo.PhysicsDemo
         private void Restart(object sender, RoutedEventArgs e)
         {
             _game.Stop();
-            _script.ResetCube();
+            _script.ResetAndFillWorld();
             Config.G = double.Parse(TextBox.Text);
             _game.Start();
         }

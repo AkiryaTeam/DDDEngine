@@ -22,5 +22,9 @@ namespace DDDEngine.Model
             Configuration.Config.LineDrawingStrategy.Draw(camera.Canvas, start, end);
         }
 
+        public Box GetBoundingBox(Position position)
+        {
+            return new Box(); // TODO
+        }
     }
 }

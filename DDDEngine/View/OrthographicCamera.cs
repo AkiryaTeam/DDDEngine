@@ -13,7 +13,7 @@ namespace DDDEngine.View
             var projectionMatrix = DenseMatrix.OfArray(new[,]
             {
                 {1/viewport.Width, 0, 0, 0},
-                {0, 1/viewport.Height, 0, 0},
+                {0, -1/viewport.Height, 0, 0},
                 {0, 0, -2/(FarZ-NearZ), -(FarZ+NearZ)/(FarZ-NearZ)},
                 {0, 0, 0, 1}
             });
