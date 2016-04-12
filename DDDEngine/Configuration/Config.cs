@@ -3,7 +3,7 @@ using DDDEngine.Configuration.LineDrawingStrategy;
 
 namespace DDDEngine.Configuration
 {
-    public static class Config
+   public static class Config
     {
 
         public static ILineDrawingStrategy LineDrawingStrategy { get; set; } = new DefaultLineDrawingStrategy();

@@ -12,10 +12,10 @@ namespace DDDEngineDemo
             InitializeComponent();
         }
 
-        private void CubeDemo(object sender, MouseButtonEventArgs e)
+        private void Demo(object sender, MouseButtonEventArgs e)
         {
-            var cubeDemoWindow = new CubeDemoWindow();
-            cubeDemoWindow.ShowDialog();
+            var demoWindow = new DemoWindow();
+            demoWindow.ShowDialog();
         }
 
         private void CubeTransformationDemo(object sender, MouseButtonEventArgs e)

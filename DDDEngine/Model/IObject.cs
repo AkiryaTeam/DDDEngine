@@ -1,9 +1,14 @@
 ﻿using DDDEngine.Physics;
+using System.Collections.Generic;
 
 namespace DDDEngine.Model
 {
-    public interface IObject
+    public abstract class IObject
     {
-        void Draw(Position position, RigidBody camera);
+        protected  List<Line> _lines;
+        public void Draw(Position position, RigidBody camera)
+        {
+            _lines.ForEach(l => l.Draw(position, camera));
+        }
     }
 }

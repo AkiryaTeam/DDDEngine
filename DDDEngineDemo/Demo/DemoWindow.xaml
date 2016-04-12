@@ -1,0 +1,24 @@
+﻿<Window x:Class="DDDEngineDemo.DemoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Demo" Height="600" Width="1155.224" Closing="Dispose" MinHeight="300" MinWidth="300">
+    <Grid HorizontalAlignment="Left" Width="1145">
+        <Canvas Name="Canvas_Orthographic" Background="White" HorizontalAlignment="Left" Width="487"></Canvas>
+        <Label x:Name="Label" HorizontalContentAlignment="Center" Content="Orthographic" VerticalAlignment="Top" HorizontalAlignment="Center" Width="262" Margin="101,10,782,0" FontSize="26.667"/>
+        <StackPanel VerticalAlignment="Bottom" Margin="182,0,853,10" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button x:Name="OrthButton" Content="Orthographic" HorizontalAlignment="Center" Width="100" Click="SetOrthographic" Margin="5 0"/>
+        </StackPanel>
+        <Canvas x:Name="Canvas_Perspective" Background="White" HorizontalAlignment="Left" Margin="487,0,0,0" Width="487"/>
+        <Label x:Name="Label2" HorizontalContentAlignment="Center" Content="Perspective" VerticalAlignment="Top" HorizontalAlignment="Center" Width="262" Margin="616,10,267,0" FontSize="26.667"/>
+        <StackPanel VerticalAlignment="Bottom" Margin="687,0,358,10" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button x:Name="PerspButton" Content="Perspective" HorizontalAlignment="Center" Width="100" Click="SetPerspective"/>
+        </StackPanel>
+        <Button Content="Cube" HorizontalAlignment="Left" Margin="1011,33,0,0" VerticalAlignment="Top" Width="93" Click="BuildCube"/>
+        <Button Content="Parallelepiped" HorizontalAlignment="Left" Margin="1011,74,0,0" VerticalAlignment="Top" Width="93" Click="BuildParallelepiped"/>
+        <Button Content="Tetrahedron" HorizontalAlignment="Left" Margin="1011,118,0,0" VerticalAlignment="Top" Width="93" Click="BuildTetrahedron"/>
+        <Button Content="MyModel" HorizontalAlignment="Left" Margin="1011,162,0,0" VerticalAlignment="Top" Width="93" Click="BuildMyModel"/>
+    </Grid>
+</Window>

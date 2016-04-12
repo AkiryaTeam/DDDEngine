@@ -12,20 +12,21 @@ namespace DDDEngineDemo
 {
     public enum CameraType { Orthographic, Perspective }
 
-    public class CubeDemoScript: GameScript
+    public class DemoScript: GameScript
     {
         private readonly RigidBody _cameraBody;
         private readonly Canvas _canvas;
+        public IObject _figure;
 
-        public CubeDemoScript(Window context, Canvas canvas) : base(context)
+        public DemoScript(Window context, Canvas canvas,IObject figure) : base(context)
         {
             World = new World3D();
             _canvas = canvas;
             _cameraBody = new RigidBody(new OrthographicCamera(canvas), new Position(), Behaviour.Static);
             World.AddCamera(_cameraBody);
 
-            var cube = new Cube(200);
-            var body = new RigidBody(cube, new Position(), Behaviour.Static);
+            _figure = figure;
+            var body = new RigidBody(_figure, new Position(), Behaviour.Static);
             World.AddBody(body);
         }
 
@@ -53,8 +54,8 @@ namespace DDDEngineDemo
                 _cameraBody.Object = new PerspectiveCamera(_canvas);
                 _cameraBody.Position.Point.Z = 1300;
             }
-            var label = (Label) Config.Get("Label");
-            Context.Dispatcher.Invoke(() => label.Content = type);
+            //var label = (Label) Config.Get("Label");
+            //Context.Dispatcher.Invoke(() => label.Content = type);
         }
     }
 }

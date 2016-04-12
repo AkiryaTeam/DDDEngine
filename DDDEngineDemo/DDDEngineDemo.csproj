@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DDDEngineDemo.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,11 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CubeDemo\CubeDemoWindow.xaml">
+    <Page Include="Demo\DemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CubeTransformationDemo\CubeTransformationDemoWindow.xaml">
+    <Page Include="TransformationDemo\TransformationDemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,13 +74,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CubeDemo\CubeDemoScript.cs" />
-    <Compile Include="CubeDemo\CubeDemoWindow.xaml.cs">
-      <DependentUpon>CubeDemoWindow.xaml</DependentUpon>
+    <Compile Include="Demo\DemoScript.cs" />
+    <Compile Include="Demo\DemoWindow.xaml.cs">
+      <DependentUpon>DemoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CubeTransformationDemo\CubeTransformationDemoScript.cs" />
-    <Compile Include="CubeTransformationDemo\CubeTransformationDemoWindow.xaml.cs">
-      <DependentUpon>CubeTransformationDemoWindow.xaml</DependentUpon>
+    <Compile Include="Demo\ParallelepipedDemoScript.cs" />
+    <Compile Include="MyModels\MyModel.cs" />
+    <Compile Include="TransformationDemo\CubeTransformationDemoScript.cs" />
+    <Compile Include="TransformationDemo\TransformationDemoWindow.xaml.cs">
+      <DependentUpon>TransformationDemoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
