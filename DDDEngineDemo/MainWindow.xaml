@@ -9,8 +9,8 @@
         <StackPanel>
             <Label Content="Choose demo to play: " />
             <ListBox Margin="10 10" x:Name="DemoList">
-                <ListBoxItem Content="Cube" MouseDoubleClick="CubeDemo" />
-                <ListBoxItem Content="Cube Transformation" MouseDoubleClick="CubeTransformationDemo" />
+                <ListBoxItem Content="Model Demo" MouseDoubleClick="Demo" />
+                <ListBoxItem Content="ModelTransformation" MouseDoubleClick="CubeTransformationDemo" />
                 <ListBoxItem Content="Physics" MouseDoubleClick="PhysicsDemo" />
             </ListBox>
         </StackPanel>

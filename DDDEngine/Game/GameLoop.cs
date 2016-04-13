@@ -23,7 +23,7 @@ namespace DDDEngine.Game
                 try
                 {
                     while (true)
-                    {   
+                    {
                         cancellationToken.ThrowIfCancellationRequested();
                         _script.Action(cancellationToken);
                         _script.Redraw();
@@ -36,6 +36,19 @@ namespace DDDEngine.Game
         public void Stop()
         {
             _cancellationTokenSource?.Cancel();
+        }
+
+        public void Restart()
+        {
+            Stop();
+            Start();
+        }
+
+        public void Restart(Action action)
+        {
+            Stop();
+            action();
+            Start();
         }
     }
 }

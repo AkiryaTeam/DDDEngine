@@ -53,10 +53,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Model\Box.cs" />
     <Compile Include="Model\Plane.cs" />
+=======
     <Compile Include="Model\Parallelepiped.cs" />
     <Compile Include="Model\Tetrahedron.cs" />
+>>>>>>> 3d-improvement
     <Compile Include="Physics\PhysicsProcessor.cs" />
     <Compile Include="Physics\Position.cs" />
     <Compile Include="Physics\RigidBody.cs" />
