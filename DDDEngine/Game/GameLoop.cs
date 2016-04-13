@@ -37,5 +37,18 @@ namespace DDDEngine.Game
         {
             _cancellationTokenSource?.Cancel();
         }
+
+        public void Restart()
+        {
+            Stop();
+            Start();
+        }
+
+        public void Restart(Action action)
+        {
+            Stop();
+            action();
+            Start();
+        }
     }
 }

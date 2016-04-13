@@ -1,18 +1,16 @@
 ﻿using DDDEngine.Model;
 using DDDEngine.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DDDEngine.Physics;
 
 namespace DDDEngineDemo
 {
-    public class MyModel:IObject
+    public class CustomModel: IObject
     {
-        public MyModel()
+        private readonly List<Line> _lines = new List<Line>(12); 
+
+        public CustomModel()
         {
-            _lines = new List<Line>(12);
             CreateLines();
         }
 
@@ -49,6 +47,11 @@ namespace DDDEngineDemo
                 new Point3D(-200, 150, 300)
             };
             return ps;
+        }
+
+        public void Draw(Position position, RigidBody camera)
+        {
+            _lines.ForEach(l => l.Draw(position, camera));
         }
     }
 }

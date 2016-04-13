@@ -6,15 +6,15 @@ namespace DDDEngine.Model
 {
     public class Parallelepiped: IObject
     {
+        private readonly List<Line> _lines = new List<Line>(12); 
         public double Width { get; set; }
         public double Heigth { get; set; }
         public double Depth { get; set; }
 
-        public Parallelepiped() : this(200,100,200) { }
+        public Parallelepiped() : this(200, 100, 200) { }
 
         public Parallelepiped(double width, double heigth, double depth)
         {
-            _lines = new List<Line>(12);
             Width = width;
             Heigth = heigth;
             Depth = depth;
@@ -56,6 +56,11 @@ namespace DDDEngine.Model
                 new Point3D(-halfWidth, halfHeigth, halfDepth)
             };
             return ps;
+        }
+
+        public void Draw(Position position, RigidBody camera)
+        {
+            _lines.ForEach(l => l.Draw(position, camera));
         }
     }
 }

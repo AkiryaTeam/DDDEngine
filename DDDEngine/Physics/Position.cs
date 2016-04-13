@@ -25,5 +25,10 @@ namespace DDDEngine.Physics
             AngleY = angleY;
             AngleZ = angleZ;
         }
+
+        public Position(Point3D point)
+        {
+            Point = point;
+        }
     }
 }

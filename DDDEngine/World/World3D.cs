@@ -24,6 +24,11 @@ namespace DDDEngine.World
             _bodies.Add(body);
         }
 
+        public void ClearBodies()
+        {
+            _bodies.Clear();
+        }
+
         public void AddCamera(RigidBody camera)
         {
             if (!(camera.Object is Camera)) throw new InvalidOperationException();

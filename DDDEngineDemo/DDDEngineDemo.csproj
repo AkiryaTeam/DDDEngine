@@ -58,11 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Demo\DemoWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="CubeTransformationDemo\CubeTransformationDemoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="TransformationDemo\TransformationDemoWindow.xaml">
+    <Page Include="ModelsDemo\ModelsDemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -74,16 +74,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Demo\DemoScript.cs" />
-    <Compile Include="Demo\DemoWindow.xaml.cs">
-      <DependentUpon>DemoWindow.xaml</DependentUpon>
+    <Compile Include="CubeTransformationDemo\CubeTransformationDemoScript.cs" />
+    <Compile Include="CubeTransformationDemo\CubeTransformationDemoWindow.xaml.cs">
+      <DependentUpon>CubeTransformationDemoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Demo\ParallelepipedDemoScript.cs" />
-    <Compile Include="MyModels\MyModel.cs" />
-    <Compile Include="TransformationDemo\CubeTransformationDemoScript.cs" />
-    <Compile Include="TransformationDemo\TransformationDemoWindow.xaml.cs">
-      <DependentUpon>TransformationDemoWindow.xaml</DependentUpon>
+    <Compile Include="ModelsDemo\ModelsDemoScript.cs" />
+    <Compile Include="ModelsDemo\ModelsDemoWindow.xaml.cs">
+      <DependentUpon>ModelsDemoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModelsDemo\CustomModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

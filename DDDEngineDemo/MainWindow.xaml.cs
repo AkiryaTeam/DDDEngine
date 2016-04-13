@@ -14,7 +14,7 @@ namespace DDDEngineDemo
 
         private void Demo(object sender, MouseButtonEventArgs e)
         {
-            var demoWindow = new DemoWindow();
+            var demoWindow = new ModelsDemoWindow();
             demoWindow.ShowDialog();
         }
 

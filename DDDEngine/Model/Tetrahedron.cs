@@ -7,6 +7,7 @@ namespace DDDEngine.Model
 {
     public class Tetrahedron: IObject
     {
+        private readonly List<Line> _lines = new List<Line>(6); 
         public double EdgeLength { get; set; }
         public double Heigth { get; set; }
 
@@ -14,9 +15,8 @@ namespace DDDEngine.Model
 
         public Tetrahedron(double edgeLength)
         {
-            _lines = new List<Line>(6);
             EdgeLength = edgeLength;
-            Heigth = (Math.Sqrt(2) / Math.Sqrt( 3)) * EdgeLength;
+            Heigth = Math.Sqrt(2) / Math.Sqrt( 3) * EdgeLength;
             CreateLines();
         }
 
@@ -36,7 +36,7 @@ namespace DDDEngine.Model
         {
             var halfEdgeLength = EdgeLength / 2;
             var halfHeigth = Heigth / 2;
-            var halfHeigthOfBase = ((Math.Sqrt(3) / 2) * EdgeLength)/2;
+            var halfHeigthOfBase = Math.Sqrt(3) / 2 * EdgeLength / 2;
             var ps = new List<Point3D>
             {
                 new Point3D(0, -halfHeigth, -halfHeigthOfBase),
@@ -45,6 +45,11 @@ namespace DDDEngine.Model
                 new Point3D(0, halfHeigth, 0),
             };
             return ps;
+        }
+
+        public void Draw(Position position, RigidBody camera)
+        {
+            _lines.ForEach(l => l.Draw(position, camera));
         }
     }
 }
