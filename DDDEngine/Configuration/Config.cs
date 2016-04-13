@@ -1,33 +1,29 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
 using DDDEngine.Configuration.LineDrawingStrategy;
-using DDDEngine.Utils.Exceptions;
 
 namespace DDDEngine.Configuration
 {
-    public static class Config
+   public static class Config
     {
 
-        public static ILineDrawingStrategy LineDrawingStrategy { get; } = new DefaultLineDrawingStrategy();
-        private static Canvas _canvas;
+        public static ILineDrawingStrategy LineDrawingStrategy { get; set; } = new DefaultLineDrawingStrategy();
+        private static readonly Dictionary<string, object> Data = new Dictionary<string, object>();
+        public static double G { get; set; } = 9.8;
 
-        public static Canvas Canvas
+        public static void Add(string s, object o)
         {
-            get
-            {
-                if (_canvas == null)
-                {
-                    throw new CanvasNotInitializedException();
-                }
-                return _canvas;
-            }
-            private set { _canvas = value; }
+            Data.Add(s, o);
         }
 
-        public static void Initialize(Canvas canvas)
+        public static object Get(string s)
         {
-            Canvas = canvas;
+            return Data[s];
         }
 
-
+        public static void Clear()
+        {
+            LineDrawingStrategy = new DefaultLineDrawingStrategy();
+            Data.Clear();
+        }
     }
 }
