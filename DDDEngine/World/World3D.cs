@@ -50,9 +50,20 @@ namespace DDDEngine.World
             }
         }
 
-        public void Move(RigidBody body, Direction direction, int i)
+        public void MoveBody(RigidBody body, Direction direction, int i)
         {
             if (!_bodies.Contains(body)) throw new NoSuchElementException();
+            Move(body, direction, i);
+        }
+
+        public void MoveCamera(RigidBody cameraBody, Direction direction, int i)
+        {
+            if (!_cameras.Contains(cameraBody)) throw new NoSuchElementException();
+            Move(cameraBody, direction, i);
+        }
+
+        private static void Move(RigidBody body, Direction direction, int i)
+        {
             switch (direction)
             {
                 case Direction.Left:
@@ -73,6 +84,8 @@ namespace DDDEngine.World
                 case Direction.Forward:
                     body.Position.Point.Z += i;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
         }
     }

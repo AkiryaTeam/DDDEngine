@@ -18,7 +18,7 @@ namespace DDDEngine.Physics
             Behaviour = behaviour;
         }
 
-        public Box GetBoundingBox()
+        public BoundingBox GetBoundingBox()
         {
             return Object.GetBoundingBox(Position);
         }

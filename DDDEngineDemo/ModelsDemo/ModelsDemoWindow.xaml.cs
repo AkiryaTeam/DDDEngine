@@ -2,6 +2,7 @@
 using System.Windows;
 using DDDEngine.Configuration;
 using DDDEngine.Game;
+using DDDEngineDemo.ModelsDemo;
 
 namespace DDDEngineDemo
 {

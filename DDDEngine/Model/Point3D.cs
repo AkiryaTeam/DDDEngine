@@ -1,4 +1,5 @@
-﻿using DDDEngine.Physics;
+﻿using System;
+using DDDEngine.Physics;
 using DDDEngine.View;
 using MathNet.Numerics.LinearAlgebra.Double;
 
@@ -62,22 +63,50 @@ namespace DDDEngine.Model
             return point2D;
         }
 
+        protected static double DegreesToRadians(double grad)
+        {
+            return grad*Math.PI/180;
+        }
+
         private DenseMatrix GetWorldMatrix(Position position)
         {
-            return DenseMatrix.OfArray(new[,]
+            var worldTranslationMatrix = DenseMatrix.OfArray(new[,]
             {
                 {1, 0, 0, position.Point.X},
                 {0, 1, 0, position.Point.Y},
                 {0, 0, 1, -position.Point.Z},
                 {0, 0, 0, 1}
             });
+            var worldRotationXMatrix = DenseMatrix.OfArray(new[,]
+            {
+                {1, 0, 0, 0},
+                {0, Math.Cos(DegreesToRadians(-position.AngleX)), -Math.Sin(DegreesToRadians(-position.AngleX)), 0},
+                {0, Math.Sin(DegreesToRadians(-position.AngleX)), Math.Cos(DegreesToRadians(-position.AngleX)), 0},
+                {0, 0, 0, 1}
+            });
+            var worldRotationYMatrix = DenseMatrix.OfArray(new[,]
+            {
+                {Math.Cos(DegreesToRadians(-position.AngleY)), 0, Math.Sin(DegreesToRadians(-position.AngleY)), 0},
+                {0, 1, 0, 0},
+                {-Math.Sin(DegreesToRadians(-position.AngleY)), 0, Math.Cos(DegreesToRadians(-position.AngleY)), 0},
+                {0, 0, 0, 1}
+            });
+            var worldRotationZMatrix = DenseMatrix.OfArray(new[,]
+            {
+                {Math.Cos(DegreesToRadians(-position.AngleZ)), -Math.Sin(DegreesToRadians(-position.AngleZ)), 0, 0},
+                {Math.Sin(DegreesToRadians(-position.AngleZ)), Math.Cos(DegreesToRadians(-position.AngleZ)), 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}
+            });
+            var worldMatrix = worldTranslationMatrix*worldRotationXMatrix*worldRotationYMatrix*worldRotationZMatrix;
+            return worldMatrix;
         }
 
-        public Box GetBoundingBox(Position position)
+        public BoundingBox GetBoundingBox(Position position)
         {
             var center = Add(position.Point);
             var halfWidth = new Point3D(0.5, 0.5, 0.5);
-            return new Box(center, halfWidth);
+            return new BoundingBox(center, halfWidth);
         }
 
         public Point3D Add(Point3D p)
@@ -90,5 +119,14 @@ namespace DDDEngine.Model
             };
         }
 
+        public Point3D ComputeCenter(Point3D p)
+        {
+            return new Point3D
+            {
+                X = X + (p.X-X)/2,
+                Y = Y + (p.Y-Y)/2,
+                Z = Z + (p.Z-Z)/2
+            };
+        }
     }
 }

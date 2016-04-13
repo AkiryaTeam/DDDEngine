@@ -1,14 +1,14 @@
 ﻿using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using DDDEngine.View;
 using DDDEngine.Configuration;
 using DDDEngine.Game;
 using DDDEngine.Model;
 using DDDEngine.Physics;
+using DDDEngine.View;
 using DDDEngine.World;
 
-namespace DDDEngineDemo
+namespace DDDEngineDemo.CubeTransformationDemo
 {
     public class CubeTransformationDemoScript: GameScript
     {
@@ -32,11 +32,30 @@ namespace DDDEngineDemo
 
         public void MoveCube(Direction direction, int delta)
         {
-            World.Move(_cube, direction, delta);
-            var position = _cube.Position;
+            World.MoveBody(_cube, direction, delta);
+            UpdateLabels();
+        }
 
+        public void MoveCube(Point2D start, Point2D end)
+        {
+            var point = end.Substract(start);
+            _cube.Position.Point.X += point.X;
+            _cube.Position.Point.Y += point.Y;
+            UpdateLabels();
+        }
+
+        public void UpdateLabels()
+        {
+            var position = _cube.Position;
             var label = (Label) Config.Get("Label");
             label.Content = $"X: {position.Point.X:F}, Y: {position.Point.Y:F}, Z: {position.Point.Z:F}";
+        }
+
+        internal void RotateCube(Point2D start, Point2D end)
+        {
+            var point = end.Substract(start);
+            _cube.Position.AngleX -= point.Y % 360;
+            _cube.Position.AngleY += point.X % 360;
         }
     }
 }

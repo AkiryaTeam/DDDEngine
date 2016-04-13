@@ -2,7 +2,10 @@
 using System.Windows.Input;
 using DDDEngine.Configuration;
 using DDDEngine.Game;
+using DDDEngine.Model;
 using DDDEngine.World;
+using DDDEngineDemo.CubeTransformationDemo;
+using DDDEngineDemo.Utils;
 
 namespace DDDEngineDemo
 {
@@ -10,6 +13,7 @@ namespace DDDEngineDemo
     {
         private readonly GameLoop _game;
         private readonly CubeTransformationDemoScript _script;
+        private readonly Point2D _startPoint = new Point2D();
 
         public CubeTransformationDemoWindow()
         {
@@ -61,6 +65,29 @@ namespace DDDEngineDemo
         private void Dispose(object sender, CancelEventArgs e)
         {
             _game.Stop();
+        }
+
+        private void MoveCube(object sender, MouseEventArgs e)
+        {
+            var position = e.GetPosition(Canvas);
+            var point = Converter.PositionToPoint2D(Canvas, position);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                _script.MoveCube(_startPoint, point);
+            }
+            else if (e.MiddleButton == MouseButtonState.Pressed)
+            {
+                _script.RotateCube(_startPoint, point);
+            }
+            _startPoint.X = point.X;
+            _startPoint.Y = point.Y;
+        }
+
+        private void SetStartPoint(object sender, MouseButtonEventArgs e)
+        {
+            var position = e.GetPosition(Canvas);
+            _startPoint.X = position.X - Canvas.ActualWidth/2;
+            _startPoint.Y = -position.Y + Canvas.ActualHeight/2;
         }
     }
 }

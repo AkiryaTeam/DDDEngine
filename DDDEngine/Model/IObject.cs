@@ -5,6 +5,6 @@ namespace DDDEngine.Model
     public interface IObject
     {
         void Draw(Position position, RigidBody camera);
-        Box GetBoundingBox(Position position);
+        BoundingBox GetBoundingBox(Position position);
     }
 }

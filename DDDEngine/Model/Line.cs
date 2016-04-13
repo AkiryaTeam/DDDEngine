@@ -1,5 +1,6 @@
 ﻿using DDDEngine.Physics;
 using DDDEngine.View;
+using static System.Math;
 
 namespace DDDEngine.Model
 {
@@ -22,9 +23,14 @@ namespace DDDEngine.Model
             Configuration.Config.LineDrawingStrategy.Draw(camera.Canvas, start, end);
         }
 
-        public Box GetBoundingBox(Position position)
+        public BoundingBox GetBoundingBox(Position position)
         {
-            return new Box(); // TODO
+            var center = Start.ComputeCenter(End);
+            center.X += position.Point.X;
+            center.Y += position.Point.Y;
+            center.Y += position.Point.Z;
+            var halfWidth = new Point3D(Abs(End.X), Abs(End.Y), Abs(End.Z));
+            return new BoundingBox(center, halfWidth);
         }
     }
 }

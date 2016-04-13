@@ -64,11 +64,11 @@ namespace DDDEngine.Model
             _lines.ForEach(l => l.Draw(position, camera));
         }
 
-        public Box GetBoundingBox(Position position)
+        public BoundingBox GetBoundingBox(Position position)
         {
             var center = new Point3D(position.Point);
             var halfWidth = new Point3D(_points[6]);
-            return new Box(center, halfWidth);
+            return new BoundingBox(center, halfWidth);
         }
     }
 }

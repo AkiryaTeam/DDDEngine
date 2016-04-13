@@ -28,5 +28,14 @@ namespace DDDEngine.Model
             Canvas.SetTop(element, Y);
             return element;
         }
+
+        public Point2D Substract(Point2D p)
+        {
+            return new Point2D
+            {
+                X = X-p.X,
+                Y = Y-p.Y
+            };
+        }
     }
 }

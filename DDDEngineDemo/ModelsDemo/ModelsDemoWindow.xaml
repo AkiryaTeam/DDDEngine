@@ -15,7 +15,7 @@
             <Label Grid.Column="0" HorizontalContentAlignment="Center" Content="Orthographic" VerticalAlignment="Top" HorizontalAlignment="Center" Width="262" FontSize="27"/>
             <Canvas Grid.Column="1" Name="CanvasPerspective" Background="White"></Canvas>
             <Label Grid.Column="1" HorizontalContentAlignment="Center" Content="Perspective" VerticalAlignment="Top" HorizontalAlignment="Center" Width="262" FontSize="27"/>
-        <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" >
+        <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
                 <Button Content="Cube" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 5" Click="ChangeToCube"/>
                 <Button Content="Parallelepiped" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 5" Click="ChangeToParallelepiped"/>
                 <Button Content="Tetrahedron" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 5" Click="ChangeToTetrahedron"/>

@@ -67,8 +67,8 @@ namespace DDDEngine.View
 
         public void Draw(Position position, RigidBody camera) { }
 
-        public Box GetBoundingBox(Position position) {
-            return new Box(); // TODO
+        public BoundingBox GetBoundingBox(Position position) {
+            return new BoundingBox(); 
         }
 
         public Viewport GetViewport()

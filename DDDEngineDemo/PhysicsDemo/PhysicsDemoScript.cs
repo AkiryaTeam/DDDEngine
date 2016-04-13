@@ -14,12 +14,13 @@ namespace DDDEngineDemo.PhysicsDemo
 {
     public class PhysicsDemoScript: GameScript
     {
+        private readonly RigidBody _cameraBody;
         public PhysicsDemoScript(Window context, Canvas canvas) : base(context)
         {
             World = new World3D();
-            var cameraBody = new RigidBody(new PerspectiveCamera(canvas), new Position(), Behaviour.Static);
-            cameraBody.Position.Point.Z = 2000;
-            World.AddCamera(cameraBody);
+            _cameraBody = new RigidBody(new PerspectiveCamera(canvas), new Position(), Behaviour.Static);
+            _cameraBody.Position.Point.Z = 2000;
+            World.AddCamera(_cameraBody);
 
             ResetAndFillWorld();
         }
@@ -50,5 +51,16 @@ namespace DDDEngineDemo.PhysicsDemo
             bodies.ForEach(World.AddBody);
         }
 
+        public void RotateCamera(Point2D start, Point2D end)
+        {
+            var point = end.Substract(start);
+            _cameraBody.Position.AngleX -= point.Y % 360;
+            _cameraBody.Position.AngleY += point.X % 360;
+        }
+
+        public void MoveCamera(Direction direction, int delta)
+        {
+            World.MoveCamera(_cameraBody, direction, delta);
+        }
     }
 }

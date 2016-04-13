@@ -41,7 +41,7 @@ namespace DDDEngine.Physics
             }
         }
 
-        private static bool ComputeIntersection(RigidBody body, List<RigidBody> bodies, Box aBox)
+        private static bool ComputeIntersection(RigidBody body, List<RigidBody> bodies, BoundingBox aBox)
         {
             var intersect = false;
 
@@ -63,7 +63,7 @@ namespace DDDEngine.Physics
             return newY;
         }
 
-        private static bool Intersect(Box a, Box b)
+        private static bool Intersect(BoundingBox a, BoundingBox b)
         {
             var x = Abs(a.Center.X - b.Center.X) <= a.HalfWidth.X + b.HalfWidth.X;
             var y = Abs(a.Center.Y - b.Center.Y) <= a.HalfWidth.Y + b.HalfWidth.Y;

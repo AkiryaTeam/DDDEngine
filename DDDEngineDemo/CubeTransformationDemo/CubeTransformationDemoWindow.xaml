@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Cube Transformation Demo" Height="600" Width="800" MinHeight="300" MinWidth="300" 
-        KeyDown="MoveCube" MouseWheel="MoveCube" Closing="Dispose">
+        KeyDown="MoveCube" MouseWheel="MoveCube" Closing="Dispose" MouseMove="MoveCube" MouseDown="SetStartPoint">
     <Grid>
         <Canvas Name="Canvas" Background="White" KeyDown="MoveCube"></Canvas>
         <TextBlock Name="Legend" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 10">

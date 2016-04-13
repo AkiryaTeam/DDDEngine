@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using DDDEngine.View;
 using DDDEngine.Game;
 using DDDEngine.Model;
 using DDDEngine.Physics;
+using DDDEngine.View;
 using DDDEngine.World;
 
-namespace DDDEngineDemo
+namespace DDDEngineDemo.ModelsDemo
 {
     public enum CameraType { Orthographic, Perspective }
     public enum ObjectType { Cube, Parallelepiped, Tetrahedron, Custom }
@@ -49,13 +49,13 @@ namespace DDDEngineDemo
             switch (objType)
             {
                 case ObjectType.Cube:
-                    obj = new Cube(200, 200, 200);
+                    obj = new Cube(400, 400, 400);
                     break;
                 case ObjectType.Parallelepiped:
-                    obj = new Parallelepiped(100, 200, 300);
+                    obj = new Parallelepiped(200, 300, 400);
                     break;
                 case ObjectType.Tetrahedron:
-                    obj = new Tetrahedron(200);
+                    obj = new Tetrahedron(400);
                     break;
                 case ObjectType.Custom:
                     obj = new CustomModel();
