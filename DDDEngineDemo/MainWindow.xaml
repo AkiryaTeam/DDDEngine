@@ -9,9 +9,10 @@
         <StackPanel>
             <Label Content="Choose demo to play: " />
             <ListBox Margin="10 10" x:Name="DemoList">
-                <ListBoxItem Content="Model Demo" MouseDoubleClick="Demo" />
-                <ListBoxItem Content="ModelTransformation" MouseDoubleClick="CubeTransformationDemo" />
+                <ListBoxItem Content="Models" MouseDoubleClick="Demo" />
+                <ListBoxItem Content="Cube Transformation" MouseDoubleClick="CubeTransformationDemo" />
                 <ListBoxItem Content="Physics" MouseDoubleClick="PhysicsDemo" />
+                <ListBoxItem Content="Simple Game" MouseDoubleClick="GameDemo" />
             </ListBox>
         </StackPanel>
     </Grid>

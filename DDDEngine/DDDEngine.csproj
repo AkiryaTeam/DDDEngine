@@ -57,6 +57,7 @@
     <Compile Include="Model\Plane.cs" />
     <Compile Include="Model\Parallelepiped.cs" />
     <Compile Include="Model\Tetrahedron.cs" />
+    <Compile Include="Physics\Collision.cs" />
     <Compile Include="Physics\PhysicsProcessor.cs" />
     <Compile Include="Physics\Position.cs" />
     <Compile Include="Physics\RigidBody.cs" />

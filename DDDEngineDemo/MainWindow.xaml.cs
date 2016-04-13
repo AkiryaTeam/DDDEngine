@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using DDDEngineDemo.GameDemo;
 using DDDEngineDemo.PhysicsDemo;
 
 namespace DDDEngineDemo
@@ -28,6 +29,12 @@ namespace DDDEngineDemo
         {
             var physicsDemoWindow = new PhysicsDemoWindow();
             physicsDemoWindow.ShowDialog();
+        }
+
+        private void GameDemo(object sender, MouseButtonEventArgs e)
+        {
+            var gameDemoWindow = new GameDemoWindow();
+            gameDemoWindow.ShowDialog();
         }
     }
 }
