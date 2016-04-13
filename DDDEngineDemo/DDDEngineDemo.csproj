@@ -58,10 +58,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameDemo\CollisionObserver.cs" />
+    <Compile Include="GameDemo\GameDemoScript.cs" />
+    <Compile Include="GameDemo\GameDemoWindow.xaml.cs">
+      <DependentUpon>GameDemoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Converter.cs" />
     <Page Include="CubeTransformationDemo\CubeTransformationDemoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GameDemo\GameDemoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ModelsDemo\ModelsDemoWindow.xaml">
       <SubType>Designer</SubType>

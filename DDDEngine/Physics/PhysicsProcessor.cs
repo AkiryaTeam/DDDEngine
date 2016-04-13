@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using DDDEngine.Configuration;
 using DDDEngine.Model;
@@ -6,9 +7,10 @@ using static System.Math;
 
 namespace DDDEngine.Physics
 {
-    public class PhysicsProcessor
+    public class PhysicsProcessor: IObservable<Collision>
     {
         private readonly Dictionary<RigidBody, Stopwatch> _bodyTime = new Dictionary<RigidBody, Stopwatch>(); 
+        private readonly List<IObserver<Collision>> _observers = new List<IObserver<Collision>>(); 
 
         public void RecomputePosition(RigidBody body, List<RigidBody> bodies)
         {
@@ -41,7 +43,7 @@ namespace DDDEngine.Physics
             }
         }
 
-        private static bool ComputeIntersection(RigidBody body, List<RigidBody> bodies, BoundingBox aBox)
+        private bool ComputeIntersection(RigidBody body, List<RigidBody> bodies, BoundingBox aBox)
         {
             var intersect = false;
 
@@ -50,7 +52,14 @@ namespace DDDEngine.Physics
                 if (b == body) continue;
                 var bBox = b.GetBoundingBox();
                 intersect = Intersect(aBox, bBox);
-                if (intersect) break;
+                if (intersect)
+                {
+                    foreach (var observer in _observers)
+                    {
+                        observer.OnNext(new Collision(body, b));
+                    }
+                    break;
+                }
             }
             return intersect;
         }
@@ -69,6 +78,35 @@ namespace DDDEngine.Physics
             var y = Abs(a.Center.Y - b.Center.Y) <= a.HalfWidth.Y + b.HalfWidth.Y;
             var z = Abs(a.Center.Z - b.Center.Z) <= a.HalfWidth.Z + b.HalfWidth.Z;
             return x && y && z;
+        }
+
+        public IDisposable Subscribe(IObserver<Collision> observer)
+        {
+            if (!_observers.Contains(observer))
+            {
+                _observers.Add(observer);
+            }
+            return new Unsubscriber(_observers, observer);
+        }
+
+        private class Unsubscriber : IDisposable
+        {
+            private readonly List<IObserver<Collision>> _observers;
+            private readonly IObserver<Collision> _observer;
+
+            public Unsubscriber(List<IObserver<Collision>> observers, IObserver<Collision> observer)
+            {
+                _observers = observers;
+                _observer = observer;
+            }
+
+            public void Dispose()
+            {
+                if (_observers != null && _observers.Contains(_observer))
+                {
+                    _observers.Remove(_observer);
+                }
+            }
         }
     }
 }

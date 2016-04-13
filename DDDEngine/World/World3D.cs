@@ -11,8 +11,8 @@ namespace DDDEngine.World
     public class World3D
     {
         private readonly List<RigidBody> _bodies;
-        private readonly List<RigidBody> _cameras; 
-        private readonly PhysicsProcessor _physicsProcessor = new PhysicsProcessor();
+        private readonly List<RigidBody> _cameras;
+        public PhysicsProcessor PhysicsProcessor { get; } = new PhysicsProcessor();
 
         public World3D()
         {
@@ -30,6 +30,12 @@ namespace DDDEngine.World
             _bodies.Clear();
         }
 
+        public void RemoveBody(RigidBody body)
+        {
+            if (!_bodies.Contains(body)) return;
+            _bodies.Remove(body);
+        }
+
         public void AddCamera(RigidBody camera)
         {
             if (!(camera.Object is Camera)) throw new InvalidOperationException();
@@ -42,10 +48,10 @@ namespace DDDEngine.World
             {
                 var cameraObject = (Camera) camera.Object;
                 cameraObject.Canvas.Children.Clear();
-                foreach (var body in _bodies)
+                foreach (var body in _bodies.ToArray())
                 {
                     body.Object.Draw(body.Position, camera);
-                    _physicsProcessor.RecomputePosition(body, _bodies);
+                    PhysicsProcessor.RecomputePosition(body, _bodies);
                 }
             }
         }
